@@ -6,6 +6,9 @@ function App() {
   return (
     <div className="app">
       <HomeScreen />
+
+      {/* row */}
+
     </div>
   );
 }
