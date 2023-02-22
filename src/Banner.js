@@ -16,16 +16,17 @@ function Banner() {
                 request.data.results[
                 Math.floor(Math.random() * request.data.results.length - 1)
                 ]
+
             );
 
-            return console.log(request.data.results);
+            return request;
         }
 
         fetchData();
 
     }, []);
 
-    console.log("this is the movie" + movie)
+    console.log(movie)
 
     function truncate(string, n) {
         return string?.length > n ? string.substr(0, n - 1) + '...' : string;
