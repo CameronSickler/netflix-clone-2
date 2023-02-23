@@ -25,7 +25,7 @@ function Nav() {
             <div className="nav_contents">
                 <img
                     className='nav_logo'
-                    src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1280px-Netflix_2015_logo.svg.png"
                     alt="Netflix" />
                 <img
                     className='nav_avatar'
