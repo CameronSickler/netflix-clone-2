@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
+import SignupScreen from './screens/SignupScreen';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
