@@ -10,27 +10,27 @@ function PlansScreen() {
         const get = async () => {
             const q = query(collection(db, 'products'), where("active", "==", true));
             const querySnapshot = await getDocs(q);
-            // const priceSnap = getDocs(collection(db, "prices"));
 
-            // const products = {};
+            // const qPrices = query(collection(db, 'prices'));
+            // const priceSnap = await getDocs(qPrices);
+
+
             querySnapshot.forEach((doc) => {
                 console.log(doc.id, "=>", doc.data());
             });
 
+            // priceSnap.forEach((doc) => {
+            //     console.log(doc.id, "=>", doc.data());
+            // });
+
             setProducts(products);
         };
-        // priceSnap.forEach(price => {
-        //     const products = {};
-        //     products[documentId.id].prices = {
-        //         priceId: price.id,
-        //         priceData: price.data()
-        //     }
-        // })
+
 
         get();
-    }, []);
+    }, [products]);
 
-    // console.log(products);
+    console.log(products);
 
     return (
         <div className='plansScreen'>
