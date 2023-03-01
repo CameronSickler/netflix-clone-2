@@ -5,28 +5,30 @@ import './PlansScreen.css';
 function PlansScreen() {
     const [products, setProducts] = useState([]);
 
-    // useEffect(() => {
-    //     const q = query(collection(db, 'products'), where("active", "==", true));
-    //     const querySnapshot = await getDocs(q);
+    useEffect(() => {
+        const q = query(collection(db, 'products'), where("active", "==", true));
 
-    //     querySnapshot.forEach((doc) =>{
-    //         const products = {};
-    //         querySnapshot.forEach(async productDoc => {
-    //             products[productDoc.id] = productDoc.data();
-    //             const priceSnap = await productDoc.ref.collection("prices").get();
-    //             priceSnap.docs.forEach(price => {
-    //                 products[productDoc.id].prices = {
-    //                     priceId: price.id,
-    //                     priceData: price.data()
-    //                 }
-    //             })
-    //         });
-    //     });
-    //         setProducts(products);
-    //     });
-    // }, []);
+        const querySnapshot = getDocs(q);
+        // const priceSnap = getDocs(collection(db, "prices"));
 
-    console.log(products);
+        // const products = {};
+        querySnapshot.forEach((doc) => {
+            console.log(doc.id, "=>", doc.data());
+        });
+
+
+        // priceSnap.forEach(price => {
+        //     const products = {};
+        //     products[documentId.id].prices = {
+        //         priceId: price.id,
+        //         priceData: price.data()
+        //     }
+        // })
+
+        setProducts(products);
+    }, []);
+
+    // console.log(products);
 
     return (
         <div className='plansScreen'>
@@ -36,21 +38,3 @@ function PlansScreen() {
 }
 
 export default PlansScreen
-
-
-// useEffect(() => {
-//     db.collection('products').where("active", "==", true).get().then(querySnapshot => {
-//         const products = {};
-//         querySnapshot.forEach(async productDoc => {
-//             products[productDoc.id] = productDoc.data();
-//             const priceSnap = await productDoc.ref.collection("prices").get();
-//             priceSnap.docs.forEach(price => {
-//                 products[productDoc.id].prices = {
-//                     priceId: price.id,
-//                     priceData: price.data()
-//                 }
-//             })
-//         });
-//         setProducts(products);
-//     });
-// }, []);
