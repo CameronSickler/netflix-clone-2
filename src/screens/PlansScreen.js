@@ -6,17 +6,19 @@ function PlansScreen() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        const q = query(collection(db, 'products'), where("active", "==", true));
 
-        const querySnapshot = getDocs(q);
-        // const priceSnap = getDocs(collection(db, "prices"));
+        const get = async () => {
+            const q = query(collection(db, 'products'), where("active", "==", true));
+            const querySnapshot = await getDocs(q);
+            // const priceSnap = getDocs(collection(db, "prices"));
 
-        // const products = {};
-        querySnapshot.forEach((doc) => {
-            console.log(doc.id, "=>", doc.data());
-        });
+            // const products = {};
+            querySnapshot.forEach((doc) => {
+                console.log(doc.id, "=>", doc.data());
+            });
 
-
+            setProducts(products);
+        };
         // priceSnap.forEach(price => {
         //     const products = {};
         //     products[documentId.id].prices = {
@@ -25,7 +27,7 @@ function PlansScreen() {
         //     }
         // })
 
-        setProducts(products);
+        get();
     }, []);
 
     // console.log(products);
