@@ -8,17 +8,20 @@ function PlansScreen() {
     useEffect(() => {
 
         const get = async () => {
-            const q = query(collection(db, 'products'), where("active", "==", true));
+            const q = query(collection(db, 'products', 'price'), where("active", "==", true));
             const querySnapshot = await getDocs(q);
 
             // const qPrices = query(collection(db, 'prices'));
-
-            // const priceSnap = await getDocs(qPrices);
+            // const queryPriceSnapshot = await getDocs(qPrices);
 
 
             querySnapshot.forEach((doc) => {
                 console.log(doc.id, "=>", doc.data());
             });
+
+            // queryPriceSnapshot.forEach((doc) => {
+            //     console.log(doc.id, "=>", doc.data());
+            // });
 
             // priceSnap.forEach((doc) => {
             //     console.log(doc.id, "=>", doc.data());
