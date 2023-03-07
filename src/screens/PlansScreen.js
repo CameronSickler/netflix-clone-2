@@ -8,7 +8,7 @@ function PlansScreen() {
     useEffect(() => {
 
         const get = async () => {
-            const q = query(collection(db, 'products', 'price'), where("active", "==", true));
+            const q = query(collection(db, 'products'), where("active", "==", true));
             const querySnapshot = await getDocs(q);
 
             // const qPrices = query(collection(db, 'prices'));
