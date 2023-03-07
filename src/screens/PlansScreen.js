@@ -12,6 +12,7 @@ function PlansScreen() {
             const querySnapshot = await getDocs(q);
 
             // const qPrices = query(collection(db, 'prices'));
+
             // const priceSnap = await getDocs(qPrices);
 
 
