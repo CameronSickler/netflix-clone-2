@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import db, { collection, query, where, getDocs } from "../firebase";
+import db, { collection, query, getDocs } from "../firebase";
 import './PlansScreen.css';
 
 function PlansScreen() {
@@ -8,24 +8,29 @@ function PlansScreen() {
     useEffect(() => {
 
         const get = async () => {
-            const q = query(collection(db, 'products'), where("active", "==", true));
+            const q = query(collection(db, `products`));
+            // const q2 = query(collectionGroup(db, 'prices'));
+
             const querySnapshot = await getDocs(q);
+            // const querySnapshot2 = await getDocs(q2);
 
-            // const qPrices = query(collection(db, 'prices'));
-            // const queryPriceSnapshot = await getDocs(qPrices);
+            // const q2 = query(listCollections(db, 'prices'));
+            // const q2Snapshot = await getDocs(q2);
 
+            // q2Snapshot.forEach((doc) => {
+            //     console.log(doc.id, "=>", doc.data());
+            // });
+
+
+
+            // let data = []
 
             querySnapshot.forEach((doc) => {
+
                 console.log(doc.id, "=>", doc.data());
+                // data.push({ id: doc.id, product: doc.data() });
             });
 
-            // queryPriceSnapshot.forEach((doc) => {
-            //     console.log(doc.id, "=>", doc.data());
-            // });
-
-            // priceSnap.forEach((doc) => {
-            //     console.log(doc.id, "=>", doc.data());
-            // });
 
             setProducts(products);
         };
@@ -33,8 +38,6 @@ function PlansScreen() {
 
         get();
     }, [products]);
-
-    console.log(products);
 
     return (
         <div className='plansScreen'>
