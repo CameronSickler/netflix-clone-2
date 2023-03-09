@@ -14,18 +14,8 @@ function PlansScreen() {
 
             prodSnap.forEach(async (prodDoc) => {
                 products[prodDoc.id] = prodDoc.data();
-                // const priceSnap = await prodDoc.ref.collection(prodRef, `${prodDoc.id}`, "prices");
 
-                // priceSnap.forEach((priceDoc) => {
-                //     products[prodDoc.id].priceDoc = {
-                //         priceId: priceDoc.id,
-                //         priceData: priceDoc.data(),
-                //     };
-                // });
-                // console.log(doc.id, "=>", doc.data());
             });
-
-
             setProducts(products);
         };
         get();
