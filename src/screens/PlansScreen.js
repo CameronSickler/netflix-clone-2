@@ -22,7 +22,6 @@ function PlansScreen() {
                         priceData: priceDoc.data(),
                     };
                 });
-
                 // console.log(doc.id, "=>", doc.data());
             });
 
