@@ -6,38 +6,31 @@ function PlansScreen() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-
-        const get = async () => {
-
+        const getProd = async () => {
             const prodRef = collection(db, 'products');
             const prodSnap = await getDocs(prodRef);
-            // const products = {};
 
-            prodSnap.forEach(async (prodDoc) => {
-
-                // const priceRef = collection(db, 'products', products[prodDoc.id], "prices");
-                // const priceSnap = await getDocs(priceRef);
-
-                // priceSnap.forEach(async (priceDoc) => {
-                //     products[prodDoc.id] = priceDoc.data();
-                // })
-
-                // first go into prices
-                // second grab prices data
-                // third add prices data product document
-                //fourth create objects for each product document
+            prodSnap.forEach((prodDoc) => {
 
                 products[prodDoc.id] = prodDoc.data();
 
+
+                // Retrieve prices for this product
+                // doc.ref.collection('prices').get().then((querySnapshot) => {
+                //     querySnapshot.forEach((doc) => {
+                //         const price = doc.data();
+                //         price.id = doc.id;
+                //         product.prices.push(price);
+                //     });
+
+                //     products.push(product);
+                //     setProducts(products);
+                // });
             });
-
-
-
             setProducts(products);
         };
-        get();
+        getProd();
     }, [products]);
-
     console.log(products)
 
     return (
@@ -48,18 +41,3 @@ function PlansScreen() {
 }
 
 export default PlansScreen
-
-
-//debugging attempt to use Promise.all() to map over for paths
-
-  // const paths = await Promise.all(prodSnap.map(async (prodDoc) => {
-            //     const priceRef = collection(db, "products", prodDoc.data().id, "prices");
-            //     const priceSnap = await getDocs(priceRef);
-
-            //     return priceSnap.docs.map((priceDoc) => {
-            //         params: {
-            //             id: `${priceDoc.data().priceID}`,
-            //                 price: `${priceDoc.data().price}`,
-            //         }
-            //     })
-            // }))
