@@ -25,7 +25,7 @@ function PlansScreen() {
 
                 //     products.push(product);
                 //     setProducts(products);
-                // });
+                // })
             });
             setProducts(products);
         };
