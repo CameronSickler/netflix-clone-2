@@ -1,7 +1,7 @@
 //WORKING CODE IN MODULAR 9
 
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, collectionGroup, getDocs } from "firebase/firestore";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 const firebaseConfig = {
@@ -22,7 +22,6 @@ export {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     collection,
-    collectionGroup,
     getDocs
 }
 

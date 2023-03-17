@@ -1,29 +1,36 @@
 //WORKING CODE IN MODULAR 9
 
 import React, { useState, useEffect } from 'react';
-import db, { collection, collectionGroup, getDocs } from "../firebase";
+import db, { collection, getDocs } from "../firebase";
 import './PlansScreen.css';
 
 function PlansScreen() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
+
         const getProd = async () => {
+
             const prodRef = collection(db, 'products');
             const prodSnap = await getDocs(prodRef);
 
-            // const priceRef = collection(db, `products/${prodDoc.id}/prices`);
-            // const priceSnap = await getDocs(priceRef)
 
 
-            prodSnap.forEach((prodDoc) => {
-
-                //   const priceRef = collection(db, `products/${prodDoc.id}/prices`);
-                //     const priceSnap = await getDocs(priceRef)
-
+            prodSnap.forEach(async (prodDoc) => {
 
                 products[prodDoc.id] = prodDoc.data();
 
+                const priceRef = collection(db, `products/${prodDoc.id}/prices`);
+                const priceSnap = await getDocs(priceRef);
+
+                priceSnap.forEach((priceDoc) => {
+
+                    // const price = priceDoc.data();
+                    // price.id = priceDoc.id;
+
+
+                    products[priceDoc.id] = priceDoc.data();
+                })
 
                 // Retrieve prices for this product
                 // doc.ref.collection('prices').get().then((querySnapshot) => {
@@ -41,7 +48,7 @@ function PlansScreen() {
         };
         getProd();
     }, [products]);
-    // console.log(products)
+    console.log(products)
 
     return (
         <div className='plansScreen'>
