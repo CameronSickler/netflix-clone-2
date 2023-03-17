@@ -14,8 +14,7 @@ function PlansScreen() {
             const prodRef = collection(db, 'products');
             const prodSnap = await getDocs(prodRef);
 
-
-
+            //query for Products collection
             prodSnap.forEach(async (prodDoc) => {
 
                 products[prodDoc.id] = prodDoc.data();
@@ -23,32 +22,20 @@ function PlansScreen() {
                 const priceRef = collection(db, `products/${prodDoc.id}/prices`);
                 const priceSnap = await getDocs(priceRef);
 
+                //query for Prices subcollection
                 priceSnap.forEach((priceDoc) => {
 
-                    // const price = priceDoc.data();
-                    // price.id = priceDoc.id;
-
-
                     products[priceDoc.id] = priceDoc.data();
+
                 })
 
-                // Retrieve prices for this product
-                // doc.ref.collection('prices').get().then((querySnapshot) => {
-                //     querySnapshot.forEach((doc) => {
-                //         const price = doc.data();
-                //         price.id = doc.id;
-                //         product.prices.push(price);
-                //     });
-
-                //     products.push(product);
-                //     setProducts(products);
-                // })
             });
             setProducts(products);
         };
         getProd();
     }, [products]);
     console.log(products)
+
 
     return (
         <div className='plansScreen'>
